@@ -1,0 +1,9 @@
+[ui]
+username = Benoît Merlet <benoit.merlet@gmail.com>
+merge = meld
+
+[extensions]
+color =
+
+[color]
+mode = ansi
