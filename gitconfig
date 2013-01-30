@@ -1,0 +1,9 @@
+[user]
+	name = Benoît Merlet
+	email = benoit.merlet@gmail.com
+[color]
+	ui = true
+[core]
+	autocrlf = false
+[alias]
+	clog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
