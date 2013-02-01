@@ -1,3 +1,5 @@
+# .gitconfig for regular users
+
 [user]
 	name = Benoît Merlet
 	email = benoit.merlet@gmail.com

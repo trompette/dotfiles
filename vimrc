@@ -1,3 +1,5 @@
+" .vimrc for all users
+
 syntax on
 
 set hlsearch

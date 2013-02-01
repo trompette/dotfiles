@@ -1,4 +1,4 @@
-# ~/.bash_aliases
+# .bash_aliases for all users
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'

@@ -1,3 +1,5 @@
+# .hgrc for regular users
+
 [ui]
 username = Benoît Merlet <benoit.merlet@gmail.com>
 merge = meld

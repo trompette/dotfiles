@@ -1,4 +1,4 @@
-# ~/.bashrc
+# .bashrc for all users
 
 [ -z "$PS1" ] && return
 
