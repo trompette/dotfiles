@@ -8,4 +8,5 @@
 [core]
 	autocrlf = false
 [alias]
-	clog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	hist = log --pretty=format:'%C(red)%h%C(reset)%C(yellow)%d%C(reset) %s %C(green)%cr %C(blue)%an <%ae>%Creset' --abbrev-commit
+	hist-no-merges = log --pretty=format:'%C(red)%h%C(reset)%C(yellow)%d%C(reset) %s %C(green)%cr %C(blue)%an <%ae>%Creset' --abbrev-commit --no-merges
