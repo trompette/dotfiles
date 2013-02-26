@@ -4,7 +4,9 @@ cd `dirname $0`
 
 echo "Installing dotfiles from `pwd`"
 
-ls -1 * |
+ls -1 |
+grep -v LICENSE |
+grep -v README |
 grep -v `basename $0` |
 while read file
 do
