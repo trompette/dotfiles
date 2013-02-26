@@ -1,5 +1,10 @@
 " .vimrc for all users
 
+" enable pathogen
+" see https://github.com/trompette/dotvim
+"runtime bundle/vim-pathogen/autoload/pathogen.vim
+"execute pathogen#infect()
+
 syntax on
 
 set hlsearch
