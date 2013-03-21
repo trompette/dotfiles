@@ -1,12 +1,15 @@
 Trompette's dotfiles
 
 Installation
+------------
 
 1. Clone this repository
 2. Launch install.sh
 
 
-License
+Copying
+-------
 
-See LICENSE file
+Copyright (c) 2013 Benoît Merlet
+See LICENSE file for details
 
