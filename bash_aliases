@@ -8,5 +8,7 @@ alias la='ls -Al'
 
 alias tree='tree -L 2'
 
+alias git='LANG=C git'
+
 alias ccat='pygmentize -O style=monokai -f console256 -g'
 
