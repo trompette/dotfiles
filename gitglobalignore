@@ -1,0 +1,4 @@
+# .gitglobalignore for regular users
+
+*.sublime-project
+*.sublime-workspace

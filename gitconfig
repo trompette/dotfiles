@@ -7,6 +7,7 @@
 [core]
 	autocrlf = false
 	editor = vim
+	excludesfile = ~/.gitglobalignore
 [alias]
 	hist = log --pretty=format:'%C(red)%h%C(reset)%C(yellow)%d%C(reset) %s %C(green)%cr %C(blue)%an <%ae>%Creset' --abbrev-commit
 	hist-no-merges = log --pretty=format:'%C(red)%h%C(reset)%C(yellow)%d%C(reset) %s %C(green)%cr %C(blue)%an <%ae>%Creset' --abbrev-commit --no-merges
@@ -14,3 +15,5 @@
 	decorate = true
 [pull]
 	rebase = true
+[status]
+	showUntrackedFiles = all
