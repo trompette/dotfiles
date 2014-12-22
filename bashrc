@@ -11,12 +11,6 @@ shopt -s checkwinsize
 
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-if [ "$USER" = "root" ]; then
-    PS1="\[\033[31m\]\h\[\033[36m\]: \[\033[32m\]\w \[\033[36m\]\$ \[\033[0m\]"
-else
-    PS1="\[\033[34m\]\u\[\033[36m\]@\[\033[34m\]\h\[\033[36m\]: \[\033[32m\]\w \[\033[36m\]\$ \[\033[0m\]"
-fi
-
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
@@ -27,5 +21,11 @@ fi
 
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
+fi
+
+if [ "$USER" = "root" ]; then
+    PS1="\[\033[31m\]\h\[\033[36m\]: \[\033[32m\]\w \[\033[36m\]\$ \[\033[0m\]"
+else
+    PS1="\[\033[34m\]\u\[\033[36m\]@\[\033[34m\]\h \[\033[36m\]⌂ \[\033[32m\]\w \$(__git_ps1 '\[\033[36m\]⊶  \[\033[32m\]%s ')\[\033[36m\]》\[\033[0m\]"
 fi
 
