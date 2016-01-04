@@ -1,0 +1,7 @@
+# .tigrc for regular users
+
+set line-graphics = utf-8
+set commit-order = default
+
+set main-view = line-number:no date:default author:full id:yes commit-title:yes,graph,refs,overflow=no
+
