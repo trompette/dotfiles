@@ -7,16 +7,17 @@ echo "Installing dotfiles from `pwd`"
 ls -1 |
 grep -v LICENSE |
 grep -v README |
-grep -v `basename $0` |
+grep -v install.sh |
+grep -v update.sh |
 while read file
 do
-	echo -n "$file... "
+	echo -n "  $file: "
 
 	set `head -n 1 "$file"`
 
 	if [ $3 != "for" -o $5 != "users" ]
 	then
-		echo "mal-formatted header... skipped"
+		echo "mal-formatted header, skipped"
 		continue
 	fi
 
@@ -27,27 +28,27 @@ do
 		regular)
 			if [ "$USER" = "root" ]
 			then
-				echo "for regular users only... skipped"
+				echo "for regular users only, skipped"
 				continue
 			fi
 			;;
 		admin)
 			if [ "$USER" != "root" ]
 			then
-				echo "for admin users only... skipped"
+				echo "for admin users only, skipped"
 				continue
 			fi
 			;;
 		all)
 			;;
 		*)
-			echo "unknown user category \"$ucat\"... skipped"
+			echo "unknown user category \"$ucat\", skipped"
 			continue
 	esac
 
-	echo -n "copying file to $dest... "
+	echo "installing file to $dest"
 
 	cp "$file" "$dest"
-
-	echo "done"
 done
+
+echo "Done."
