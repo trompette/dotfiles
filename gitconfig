@@ -9,8 +9,9 @@
 	editor = vim
 	excludesfile = ~/.gitglobalignore
 [alias]
-	log-branch = log --oneline --decorate=false master..HEAD
+	log-branch = log --reverse --oneline --decorate=false master..HEAD
 	changed-files = "!f() { m=$(git merge-base HEAD master); git diff --name-only HEAD $m; }; f"
+	log-branch-with-details = log --reverse --decorate=false master..HEAD
 [log]
 	decorate = true
 [pull]
