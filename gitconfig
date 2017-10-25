@@ -10,8 +10,9 @@
 	excludesfile = ~/.gitglobalignore
 [alias]
 	log-branch = log --reverse --oneline --decorate=false master..HEAD
-	changed-files = "!f() { m=$(git merge-base HEAD master); git diff --name-only HEAD $m; }; f"
 	log-branch-with-details = log --reverse --decorate=false master..HEAD
+	branch-files = "!f() { git diff --name-only $(git merge-base master HEAD); }; f"
+	branch-stats = "!f() { git diff --stat $(git merge-base master HEAD); }; f"
 [log]
 	decorate = true
 [pull]
