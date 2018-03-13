@@ -13,6 +13,7 @@
 	log-branch-with-details = log --reverse --decorate=false master..HEAD
 	branch-files = "!f() { git diff --name-only $(git merge-base master HEAD); }; f"
 	branch-stats = "!f() { git diff --stat $(git merge-base master HEAD); }; f"
+	up = pull --all
 [log]
 	decorate = true
 [pull]
@@ -23,3 +24,4 @@
 	all = true
 [rebase]
 	autosquash = true
+	autostash = true
