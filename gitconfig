@@ -11,8 +11,8 @@
 [alias]
 	log-branch = log --reverse --oneline --decorate=false master..HEAD
 	log-branch-with-details = log --reverse --decorate=false master..HEAD
-	branch-files = "!f() { git diff --name-only $(git merge-base master HEAD); }; f"
-	branch-stats = "!f() { git diff --stat $(git merge-base master HEAD); }; f"
+	branch-files = "!git diff --name-only $(git merge-base master HEAD)"
+	branch-stats = "!git diff --stat $(git merge-base master HEAD)"
 	up = "!git pull --all --prune; git submodule update"
 [log]
 	decorate = true
@@ -20,8 +20,6 @@
 	rebase = true
 [status]
 	showUntrackedFiles = all
-[git-up "fetch"]
-	all = true
 [rebase]
 	autosquash = true
 	autostash = true
