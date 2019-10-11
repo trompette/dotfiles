@@ -23,3 +23,5 @@
 [rebase]
 	autosquash = true
 	autostash = true
+[diff]
+	noprefix = true
