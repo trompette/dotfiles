@@ -29,5 +29,7 @@ else
     PS1="\[\033[34m\]\u\[\033[36m\]@\[\033[34m\]\h \[\033[36m\]cwd:\[\033[32m\]\w \$(__git_ps1 '\[\033[36m\]git:\[\033[32m\]%s ')\[\033[36m\]❯\[\033[0m\] "
 fi
 
+PROMPT_COMMAND='printf "⏎%$((COLUMNS-1))s\\r"'
+
 export LESSCHARSET="utf-8"
 
