@@ -1,54 +1,54 @@
 #!/usr/bin/env sh
 
-cd `dirname $0`
+cd "$(dirname "$0")" || exit
 
-echo "Installing dotfiles from `pwd`"
+echo Installing dotfiles from "$PWD"
 
+# shellcheck disable=SC2010
 ls -1 |
 grep -v LICENSE |
 grep -v README |
 grep -v install.sh |
 grep -v update.sh |
-while read file
+while read -r file
 do
-	echo -n "  $file: "
+  header=$(head -n 1 "$file")
+  # shellcheck disable=SC2086
+  set $header
 
-	set `head -n 1 "$file"`
+  if [ "$3" != "for" ] || [ "$5" != "users" ]
+  then
+    echo "$file": mal-formatted header, skipped
+    continue
+  fi
 
-	if [ $3 != "for" -o $5 != "users" ]
-	then
-		echo "mal-formatted header, skipped"
-		continue
-	fi
+  dest=$HOME/$2
+  ucat=$4
 
-	dest=$HOME/$2
-	ucat=$4
+  case "$ucat" in
+    regular)
+      if [ "$USER" = "root" ]
+      then
+        echo "$file": for regular users only, skipped
+        continue
+      fi
+      ;;
+    admin)
+      if [ "$USER" != "root" ]
+      then
+        echo "$file": for admin users only, skipped
+        continue
+      fi
+      ;;
+    all)
+      ;;
+    *)
+      echo "$file": unknown user category, skipped
+      continue
+  esac
 
-	case "$ucat" in
-		regular)
-			if [ "$USER" = "root" ]
-			then
-				echo "for regular users only, skipped"
-				continue
-			fi
-			;;
-		admin)
-			if [ "$USER" != "root" ]
-			then
-				echo "for admin users only, skipped"
-				continue
-			fi
-			;;
-		all)
-			;;
-		*)
-			echo "unknown user category \"$ucat\", skipped"
-			continue
-	esac
-
-	echo "installing file to $dest"
-
-	cp "$file" "$dest"
+  echo "$file": installing file to "$dest"
+  cp "$file" "$dest"
 done
 
-echo "Done."
+echo Done.

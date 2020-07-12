@@ -1,56 +1,56 @@
 #!/usr/bin/env sh
 
-cd `dirname $0`
+cd "$(dirname "$0")" || exit
 
-echo "Updating repository in `pwd`"
+echo Updating repository in "$PWD"
 
+# shellcheck disable=SC2010
 ls -1 |
 grep -v LICENSE |
 grep -v README |
 grep -v install.sh |
 grep -v update.sh |
-while read file
+while read -r file
 do
-	echo -n "  $file: "
+  header=$(head -n 1 "$file")
+  # shellcheck disable=SC2086
+  set $header
 
-	set `head -n 1 "$file"`
+  if [ "$3" != "for" ] || [ "$5" != "users" ]
+  then
+    echo "$file": mal-formatted header, skipped
+    continue
+  fi
 
-	if [ $3 != "for" -o $5 != "users" ]
-	then
-		echo "mal-formatted header, skipped"
-		continue
-	fi
+  src=$HOME/$2
+  ucat=$4
 
-	src=$HOME/$2
-	ucat=$4
+  case "$ucat" in
+    regular)
+      if [ "$USER" = "root" ]
+      then
+        echo "$file": for regular users only, skipped
+        continue
+      fi
+      ;;
+    admin)
+      if [ "$USER" != "root" ]
+      then
+        echo "$file": for admin users only, skipped
+        continue
+      fi
+      ;;
+    all)
+      ;;
+    *)
+      echo "$file": unknown user category, skipped
+      continue
+  esac
 
-	case "$ucat" in
-		regular)
-			if [ "$USER" = "root" ]
-			then
-				echo "for regular users only, skipped"
-				continue
-			fi
-			;;
-		admin)
-			if [ "$USER" != "root" ]
-			then
-				echo "for admin users only, skipped"
-				continue
-			fi
-			;;
-		all)
-			;;
-		*)
-			echo "unknown user category \"$ucat\", skipped"
-			continue
-	esac
-
-	echo "updating file from $src"
-
-	cp "$src" "$file"
+  echo "$file": updating file from "$src"
+  cp "$src" "$file"
 done
 
-echo "Done."
+echo Done.
 echo
 git status
