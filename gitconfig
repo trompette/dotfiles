@@ -9,10 +9,11 @@
 	editor = vim
 	excludesfile = ~/.gitglobalignore
 [alias]
-	log-branch = log --reverse --oneline --decorate=false master..HEAD
-	log-branch-with-details = log --reverse --decorate=false master..HEAD
-	branch-files = "!git diff --name-only $(git merge-base master HEAD)"
-	branch-stats = "!git diff --stat $(git merge-base master HEAD)"
+	branch-files = "!git diff --name-only $(git merge-base $(git main-branch) HEAD)"
+	branch-stats = "!git diff --stat $(git merge-base $(git main-branch) HEAD)"
+	log-branch = "!git log --reverse --oneline --no-decorate $(git main-branch)..HEAD"
+	log-branch-with-details = "!git log --reverse --no-decorate $(git main-branch)..HEAD"
+	main-branch = config init.defaultBranch
 	up = "!git pull --all --prune; git submodule update"
 [log]
 	decorate = true
@@ -25,3 +26,5 @@
 	autostash = true
 [diff]
 	noprefix = true
+[init]
+	defaultBranch = main
